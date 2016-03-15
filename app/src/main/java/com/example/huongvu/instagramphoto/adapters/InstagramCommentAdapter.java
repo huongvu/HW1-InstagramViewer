@@ -27,16 +27,23 @@ import com.squareup.picasso.Transformation;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by HUONGVU on 3/13/2016.
  */
 public class InstagramCommentAdapter extends ArrayAdapter<Comment> {
 
     // View lookup cache
-    private static class ViewHolder {
-        TextView authorname;
-        TextView commentContent;
-        ImageView authorUrl;
+    static class ViewHolder {
+        @Bind(R.id.tvAuthorName) TextView authorName;
+        @Bind(R.id.tvCommentContent) TextView commentContent;
+        @Bind(R.id.ivAuthorUrl) ImageView authorUrl;
+
+        public ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 
     public InstagramCommentAdapter(Context context, List<Comment> objects) {
@@ -48,7 +55,6 @@ public class InstagramCommentAdapter extends ArrayAdapter<Comment> {
         // Get the photo item for this position
         final Comment comment = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
-        ViewHolder viewHolder; // view lookup cache stored in tag
 
         Transformation transformation = new RoundedTransformationBuilder()
                 .borderColor(Color.BLACK)
@@ -57,26 +63,27 @@ public class InstagramCommentAdapter extends ArrayAdapter<Comment> {
                 .oval(false)
                 .build();
 
+        ViewHolder viewHolder; // view lookup cache stored in tag
+
         if (convertView == null) {
-            viewHolder = new ViewHolder();
 
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_comment, parent, false);
 
-            viewHolder.authorname = (TextView) convertView.findViewById(R.id.tvAuthorName);
-            viewHolder.commentContent = (TextView) convertView.findViewById(R.id.tvCommentContent);
-            viewHolder.authorUrl = (ImageView) convertView.findViewById(R.id.ivAuthorUrl);
+            viewHolder = new ViewHolder(convertView);
 
             convertView.setTag(viewHolder);
+
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         // Populate the data into the template view using the data object
 
-        viewHolder.authorname.setText(comment.author);
+        viewHolder.authorName.setText(comment.author);
 
         //viewHolder.commentContent.setText(comment.comment);
         setTags(viewHolder.commentContent,comment.comment);
+
         //Loading image from below url into imageView
         if(comment.authorURL != null) {
 
@@ -164,5 +171,7 @@ public class InstagramCommentAdapter extends ArrayAdapter<Comment> {
         pTextView.setMovementMethod(LinkMovementMethod.getInstance());
         pTextView.setText(string);
     }
+
+
 
 }

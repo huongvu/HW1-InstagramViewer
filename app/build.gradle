@@ -21,6 +21,7 @@ android {
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -30,5 +31,8 @@ dependencies {
     compile 'com.android.support:design:23.2.0'
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.squareup.picasso:picasso:2.5.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.makeramen:roundedimageview:2.2.0'
+    compile 'com.github.danylovolokh:video-player-manager:0.2.0'
+
 }

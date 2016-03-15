@@ -108,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
                         photoItems.add(photo.fromJson(photoJSON));
 
+                        //Log.d("TYPE", "onSuccess: " + photoJSON.getString("type"));
+
                     }
                     aPhoto.notifyDataSetChanged();
 

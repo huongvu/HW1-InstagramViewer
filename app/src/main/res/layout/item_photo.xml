@@ -104,4 +104,14 @@
         android:paddingTop="10dp"
         android:paddingBottom="5dp"/>
 
+    <com.volokh.danylo.video_player_manager.ui.VideoPlayerView
+        android:id="@+id/video_player_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_below="@+id/ivProfileUrl"
+        android:layout_centerInParent="true"
+        android:paddingTop="10dp"
+        />
+
 </RelativeLayout>
